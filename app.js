@@ -1,9 +1,9 @@
-
 console.log("Hola a todos ❤")
 
 const formulario =document.getElementById('formulario');
 const input = document.getElementById('input');
 const input1 = document.getElementById('input2');
+const input2 = document.getElementById('input3');
 const Listact=document.getElementById('Lista-actividades');
 const template=document.getElementById('template').content;
 const fragment=document.createDocumentFragment();
@@ -34,6 +34,7 @@ formulario.addEventListener('submit',e=>{
         const actividad={
         id: Date.now(),
         des:input1.value,
+        eq:input2.value,
         texto:input.value,
         estado: false
 
@@ -64,11 +65,12 @@ formulario.addEventListener('submit',e=>{
         Object.values(actividades).forEach(actividad =>{
             const clone = template.cloneNode(true)
             clone.querySelector('p').textContent =actividad.texto
-
+            clone.querySelector('p1').textContent =actividad.des
+            clone.querySelector('p2').textContent =actividad.id
+            clone.querySelector('p3').textContent =actividad.eq
             if(actividad.estado){
                 clone.querySelector('.alert').classList.replace('alert-warning','alert-primary')
                 clone.querySelectorAll('.fas')[0].classList.replace('fa-check-circle','fa-undo-alt')
-                clone.querySelector('p').style.textDecoration ='Line-through'
             }
             clone.querySelectorAll('.fas')[0].dataset.id =actividad.id
             clone.querySelectorAll('.fas')[1].dataset.id =actividad.id
